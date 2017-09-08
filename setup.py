@@ -4,7 +4,6 @@ import xml.sax.saxutils
 from os.path import join
 import sys
 import os
-from six import text_type
 
 def get_version(fname='formalchemy/__init__.py'):
     with open(fname) as f:
@@ -60,6 +59,8 @@ setup(name='FormAlchemy',
       author_email='formalchemy@googlegroups.com',
       url='http://docs.formalchemy.org/',
       install_requires=['SQLAlchemy', 'Tempita', 'WebHelpers2', 'WebOb', 'MarkupSafe', 'six'],
+      extras_require={'test': ['nose', 'coverage', 'beautifulsoup4', 'mako', 'webtest']},
+      test_suite='nose.collector',
       packages=find_packages(exclude=('formalchemy.tests',)),
       package_data={'formalchemy': ['*.tmpl', 'i18n_resources/*/LC_MESSAGES/formalchemy.mo',
                                     'ext/pylons/*.mako', 'ext/pylons/resources/*.css', 'ext/pylons/resources/*.png',
