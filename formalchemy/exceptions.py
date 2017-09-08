@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import markupsafe
+
 class PkError(Exception):
     """An exception raised when a primary key conflict occur"""
 
@@ -8,7 +10,7 @@ class ValidationError(Exception):
     """
     @property
     def message(self):
-        return self.args[0]
+        return markupsafe.escape(self.args[0])
     def __repr__(self):
         return 'ValidationError(%r,)' % self.message
 
