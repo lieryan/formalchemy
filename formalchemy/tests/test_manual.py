@@ -12,7 +12,7 @@ class ReportByUserForm(object):
    to_date = Field(type=types.Date).required()
 
 
-def test_manual(self):
+def test_manual():
     """
     >>> fs = FieldSet(Manual)
     >>> print(configure_and_render(fs, focus=None))

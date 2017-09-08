@@ -35,7 +35,7 @@ def test_unicode():
     >>> session.rollback()
     """
 
-def test_unicode_data(self):
+def test_unicode_data():
     """
     >>> fs = FieldSet(User, session=session)
     >>> data = UnicodeMultiDict(MultiDict({'User--name': u'José', 'User--email': 'j@jose.com', 'User--password': 'pwd'}), encoding='utf-8')

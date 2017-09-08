@@ -17,7 +17,7 @@ def test_label():
     My label
     """
 
-def test_fk_label(self):
+def test_fk_label():
     """
     >>> fs = FieldSet(Order)
     >>> print(fs.user.label_text)

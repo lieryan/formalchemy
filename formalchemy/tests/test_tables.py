@@ -1,5 +1,5 @@
 from formalchemy.tests import *
-def test_rebind_and_render(self):
+def test_rebind_and_render():
     """Explicitly test rebind + render:
 
     >>> g = Grid(User, session=session)
