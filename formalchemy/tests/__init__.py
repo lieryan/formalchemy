@@ -6,18 +6,15 @@ import unittest
 logging.basicConfig()
 logging.getLogger().setLevel(logging.DEBUG)
 
-try:
-    from bs4 import BeautifulSoup as _BeautifulSoup
-    class BeautifulSoup(_BeautifulSoup):
-        def prettify(self):
-            if self.html: self.html.unwrap()
-            if self.body: self.body.unwrap()
-            res = super(BeautifulSoup,self).prettify()
-            res = res.replace("/>"," />")
-            res = res.replace("  />"," />")
-            return str(res)
-except ImportError:
-    from BeautifulSoup import BeautifulSoup # required for html prettification
+from bs4 import BeautifulSoup as _BeautifulSoup
+class BeautifulSoup(_BeautifulSoup):
+    def prettify(self):
+        if self.html: self.html.unwrap()
+        if self.body: self.body.unwrap()
+        res = super(BeautifulSoup,self).prettify()
+        res = res.replace("/>"," />")
+        res = res.replace("  />"," />")
+        return str(res)
 from webob import Request, Response
 
 from sqlalchemy import *
