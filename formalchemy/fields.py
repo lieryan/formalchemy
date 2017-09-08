@@ -590,8 +590,8 @@ class DateFieldRenderer(FieldRenderer):
         else:
             yyyy = str(self.field.model_value and self.field.model_value.year or 'YYYY')
         selects = dict(
-                m=h.select(mm_name, [mm], month_options, **kwargs),
-                d=h.select(dd_name, [dd], day_options, **kwargs),
+                m=h.select(mm_name, [str(mm)], month_options, **kwargs),
+                d=h.select(dd_name, [str(dd)], day_options, **kwargs),
                 y=h.text_field(yyyy_name, value=yyyy, maxlength=4, size=4, **kwargs))
         value = [selects.get(l) for l in self.edit_format.split('-')]
         return h.literal('\n').join(value)
@@ -635,9 +635,9 @@ class TimeFieldRenderer(FieldRenderer):
             values.append(v)
         hh, mm, ss = values
         return h.literal(':').join([
-                    h.select(hh_name, [hh], opts['hour'], **kwargs),
-                    h.select(mm_name, [mm], opts['minute'], **kwargs),
-                    h.select(ss_name, [ss], opts['second'], **kwargs)])
+                    h.select(hh_name, [str(hh)], opts['hour'], **kwargs),
+                    h.select(mm_name, [str(mm)], opts['minute'], **kwargs),
+                    h.select(ss_name, [str(ss)], opts['second'], **kwargs)])
     def render(self, **kwargs):
         return h.content_tag('span', self._render(**kwargs), id=self.name)
 
