@@ -39,8 +39,7 @@ def test_manual():
      <label class="field_opt" for="Manual--d">
       D
      </label>
-     <textarea cols="80" id="Manual--d" name="Manual--d" rows="10">
-     </textarea>
+     <textarea cols="80" id="Manual--d" name="Manual--d" rows="10"></textarea>
     </div>
     >>> fs.rebind(data={'Manual--a': 'asdf'})
     >>> print(pretty_html(fs.a.render()))
