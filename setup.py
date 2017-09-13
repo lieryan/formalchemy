@@ -5,6 +5,8 @@ from os.path import join
 import sys
 import os
 
+os.chdir(os.path.join('./', os.path.dirname(__file__)))
+
 def get_version(fname='formalchemy/__init__.py'):
     with open(fname) as f:
         for line in f:
