@@ -10,8 +10,8 @@ Check out the release branch:
 
 Run tests::
 
-  $ nosetests
-  $ nosetests3
+  $ nosetests --with-doctest --doctest-tests tests/
+  $ nosetests3 --with-doctest --doctest-tests tests/
 
 Make sure you have a clean working directory:
 
@@ -49,8 +49,8 @@ Merge the release into the master branch:
 
 make sure that the master branch still works:
 
-  $ nosetests
-  $ nosetests3
+  $ nosetests --with-doctest --doctest-tests tests/
+  $ nosetests3 --with-doctest --doctest-tests tests/
 
 Finally, update git:
 
