@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import cgi
 import copy
-from six import string_types
+from six import string_types, text_type
 from collections import MutableMapping
 from webob.multidict import MultiDict
 
@@ -61,7 +61,7 @@ class UnicodeMultiDict(MutableMapping):
                 if not isinstance(value.filename, string_types):
                     value.filename = value.filename.decode(self.encoding,
                                                            self.errors)
-        elif not isinstance(value, string_types):
+        elif not isinstance(value, text_type):
             try:
                 value = value.decode(self.encoding, self.errors)
             except AttributeError:
