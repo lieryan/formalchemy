@@ -4,6 +4,7 @@
 # the MIT License: http://www.opensource.org/licenses/mit-license.php
 
 import os
+import six
 from gettext import GNUTranslations
 
 i18n_path = os.path.join(os.path.dirname(__file__), 'i18n_resources')
@@ -83,6 +84,8 @@ def get_translator(lang=None, request=None):
             tr = GNUTranslations(open(translations_path, 'rb')).gettext
             def translate(value):
                 value = tr(value)
+                if isinstance(value, six.binary_type):
+                    value = six.text_type(value, 'utf-8')
                 return value
             if request is not None:
                 request.environ['fa.translate'] = translate
