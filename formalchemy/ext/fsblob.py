@@ -5,7 +5,7 @@ import cgi
 import string
 import random
 import shutil
-from six import string_types
+from six import text_type
 import formalchemy.helpers as h
 from formalchemy.fields import FileFieldRenderer as Base
 from formalchemy.fields import FieldRenderer
@@ -19,6 +19,8 @@ except ImportError:
 
 __all__ = ['file_extension', 'image_extension',
            'FileFieldRenderer', 'ImageFieldRenderer']
+
+PATHSAFECHARS = string.ascii_letters + string.digits + '.-_ '
 
 def file_extension(extensions=[], errormsg=None):
     """Validate a file extension.
@@ -35,19 +37,26 @@ def image_extension(extensions=['jpeg', 'jpg', 'gif', 'png']):
     return file_extension(extensions, errormsg=errormsg)
 
 def normalized_basename(path):
-    """
+    r"""
+    normalized_basename() removes all non-ascii and non-printable characters
+    from a file path:
+
     >>> print(normalized_basename(u'c:\\Prog files\My fil\xe9.jpg'))
     My_fil.jpg
 
-    >>> print(normalized_basename('c:\\Prog files\My fil\xc3\xa9.jpg'))
+    >>> print(normalized_basename('c:\\Prog files\My \nfil\xc3\xa9.jpg'))
     My_fil.jpg
-
     """
-    if isinstance(path, string_types):
-        path = path.encode('ascii', 'ignore')
-    path = path.decode('ascii')
-    filename = path.split('/')[-1]
-    filename = filename.split('\\')[-1]
+    if not isinstance(path, text_type):
+        path = text_type(path, 'ascii', 'ignore')
+
+    # we cannot use os.path.basename here because os.path behavior changes
+    # depending on the OS that python is running, but our path may come over a
+    # web request from a client with a different OS than the server
+    filename = path.rsplit('/', 1)[-1]
+    filename = filename.rsplit('\\', 1)[-1]
+
+    filename = text_type().join(c for c in filename if c in PATHSAFECHARS)
     return filename.replace(' ', '_')
 
 
