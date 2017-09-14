@@ -3,6 +3,7 @@ import os
 import glob
 import logging
 import unittest
+import six
 logging.basicConfig()
 logging.getLogger().setLevel(logging.DEBUG)
 
@@ -14,7 +15,7 @@ class BeautifulSoup(_BeautifulSoup):
         res = super(BeautifulSoup,self).prettify()
         res = res.replace("/>"," />")
         res = res.replace("  />"," />")
-        return str(res)
+        return six.text_type(res)
 from webob import Request, Response
 
 from sqlalchemy import *
@@ -430,7 +431,7 @@ else:
     raise ImportError('mako is required for testing')
 
 def pretty_html(html):
-    soup = BeautifulSoup(html)
+    soup = BeautifulSoup(six.text_type(html))
     return soup.prettify().strip()
 
 class FieldSet(DefaultFieldSet):

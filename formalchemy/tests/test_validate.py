@@ -8,7 +8,7 @@ def validate_empty():
     Traceback (most recent call last):
     ...
     ValidationError: Cannot validate without binding data
-    >>> fs.render() #doctest: +ELLIPSIS
+    >>> str(fs.render()) #doctest: +ELLIPSIS
     '<div>...</div>'
     """
 
@@ -18,6 +18,6 @@ def validate_no_field_in_data():
     >>> fs.rebind(data={})
     >>> fs.validate()
     False
-    >>> fs.render() #doctest: +ELLIPSIS
+    >>> str(fs.render()) #doctest: +ELLIPSIS
     '<div>...</div>'
     """

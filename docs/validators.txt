@@ -262,9 +262,9 @@ in the same FieldSet if you know this will be contained in a FieldSet, for examp
 The `FieldSet.errors` and `Field.errors` attributes contain your custom error
 message::
 
-  >>> fs.errors
+  >>> fs.errors # doctest: +IGNORE_UNICODE
   {Field(number): [Markup('Value must be less than 0')]}
 
-  >>> fs.number.errors
+  >>> fs.number.errors # doctest: +IGNORE_UNICODE
   [Markup('Value must be less than 0')]
 

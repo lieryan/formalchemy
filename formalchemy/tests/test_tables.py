@@ -94,7 +94,7 @@ def test_extra_field():
     >>> g.rebind(data={'User-1-email': '', 'User-1-password': '1234_', 'User-1-name': 'Bill_', 'User-1-orders': '1', 'User-2-email': 'john_@example.com', 'User-2-password': '5678_', 'User-2-name': 'John_', 'User-2-orders': ['2', '3'], })
     >>> g.validate()
     False
-    >>> g.errors[bill]
+    >>> g.errors[bill] # doctest: +IGNORE_UNICODE
     {AttributeField(email): [Markup('Please enter a value')]}
     >>> g.errors[john]
     {}
@@ -203,7 +203,7 @@ def test_rebind_render():
     >>> g.validate()
     True
     >>> g.sync()
-    >>> bill.email
+    >>> str(bill.email)
     'updatebill_@example.com'
     """
 

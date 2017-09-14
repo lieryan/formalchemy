@@ -144,7 +144,7 @@ def test_binary():
     We need test data
 
         >>> data = get_fields(TEST_DATA)
-        >>> print(data.getone('Binaries--file')) # doctest: +ELLIPSIS
+        >>> print(data.getone('Binaries--file')) # doctest: +ELLIPSIS,+IGNORE_UNICODE
         FieldStorage('Binaries--file', 'test.js'...)
 
         >>> fs.rebind(data=data)
