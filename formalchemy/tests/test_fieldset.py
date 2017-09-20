@@ -728,7 +728,7 @@ def test_fieldset_37_a():
 
     assert_equal(
         sorted((k.key if k is not None else 'NONE', v) for k,v in fs_3.errors.items()),
-        [('NONE', ('foo and bar do not match',)), ('foo', ['does not match bar'])],
+        [('NONE', ['foo and bar do not match',]), ('foo', ['does not match bar'])],
     )
     
 def test_fieldset_37_b():

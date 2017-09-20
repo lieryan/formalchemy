@@ -574,7 +574,7 @@ class FieldSet(DefaultRenderers):
             try:
                 self.validator(self)
             except ValidationError as e:
-                self._errors = e.args
+                self._errors.append(e.message)
                 success = False
         return success
 
