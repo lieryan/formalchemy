@@ -95,7 +95,7 @@ def test_extra_field():
     >>> g.validate()
     False
     >>> g.errors[bill] # doctest: +IGNORE_UNICODE
-    {AttributeField(email): [Markup('Please enter a value')]}
+    {AttributeField(email): [literal('Please enter a value')]}
     >>> g.errors[john]
     {}
     >>> g.sync_one(john)
