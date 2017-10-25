@@ -35,6 +35,7 @@ from formalchemy import fields
 from formalchemy import config
 from formalchemy import exceptions
 from formalchemy import fatypes
+from formalchemy import helpers
 
 from tempita import Template as _TempitaTemplate # must import after base
 class TempitaTemplate(_TempitaTemplate):
@@ -616,7 +617,7 @@ class FieldSet(DefaultRenderers):
         """
         errors = {}
         if self._errors:
-            errors[None] = self._errors
+            errors[None] = [helpers.literal.escape(m) for m in self._errors]
         errors.update(dict([(field, field.errors)
                             for field in self.render_fields.values() if field.errors]))
         return errors
